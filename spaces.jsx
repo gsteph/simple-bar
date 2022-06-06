@@ -16,7 +16,7 @@ const { processWidget } = settings.widgets
 //const command = `${shell} simple-bar/lib/scripts/init.sh ${yabaiPath}`
 // const command = `curl -s 127.0.0.1:5000/all`
 const command = (dispatch) =>
-  fetch('http://127.0.0.1:41417/http://127.0.0.1:5000/all')
+  fetch('http://127.0.0.1:41417/http://yabai_app.local/all')
   .then(async (response) => {
     dispatch({ type: 'FETCH_SUCCEEDED', output: await response.json() });
   })
@@ -26,13 +26,12 @@ Utils.injectStyles('simple-bar-spaces-styles', [
   Base.styles,
   Spaces.styles,
   Process.styles,
-  Settings.styles,
-  settings.customStyles.styles
+  Settings.styles, settings.customStyles.styles
 ])
 
 const render = ({ output, error }) => {
 
-  $.post("http://127.0.0.1:41417/http://127.0.0.1:5000/log", `${getTS()}000 spaces.jsx : renderStarted`)
+  $.post("http://127.0.0.1:41417/http://yabai_app.local/log", `${getTS()}000 spaces.jsx : renderStarted`)
   const baseClasses = Utils.classnames('simple-bar simple-bar--spaces', {
     'simple-bar--floating': settings.global.floatingBar,
     'simple-bar--no-bar-background': settings.global.noBarBg,
@@ -73,7 +72,7 @@ const render = ({ output, error }) => {
   //   </div>
   // )
 
-  $.post("http://127.0.0.1:41417/http://127.0.0.1:5000/log", `${getTS()}000 spaces.jsx : renderFinished`)
+  $.post("http://127.0.0.1:41417/http://yabai_app.local/log", `${getTS()}000 spaces.jsx : renderFinished`)
   // fetch("http://127.0.0.1:5000/log", {data:"asdasd"})
 
   return (
@@ -85,7 +84,7 @@ const render = ({ output, error }) => {
 }
 
 const updateState = (event, previousState) => {
-  $.post("http://127.0.0.1:41417/http://127.0.0.1:5000/log", `${getTS()}000 spaces.jsx : updateState`)
+  $.post("http://127.0.0.1:41417/http://yabai_app.local/log", `${getTS()}000 spaces.jsx : updateState`)
   if (event.type === "FETCH_SUCCEEDED") {
     return event;
   }
